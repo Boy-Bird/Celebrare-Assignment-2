@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centered Canvas with Drag and Drop</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="control-box">
+      <button id="control-btn" onclick="addTextBox()">Add Text Box</button>
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        style="display: none"
+        onchange="changeBackgroundImage(event)"
+      />
+      <button
+        id="control-btn"
+        onclick="document.getElementById('imageUpload').click()"
+      >
+        Add Image
+      </button>
+      <div id="controls" style="display: none">
+        <!-- <button onclick="undo()">Undo</button> -->
+        <!-- <button onclick="redo()">Redo</button> -->
+        <div style="border: 1px solid black">
+          <p
+            style="
+              border-bottom: 1px solid black;
+              margin-bottom: 0;
+              padding-left: 0.8rem;
+            "
+          >
+            Edit Text
+          </p>
+          <textarea
+            type="text"
+            id="textEditor"
+            style="
+              display: inline;
+              background-color: transparent;
+              border: none;
+              width: 95.5%;
+              height: 99px;
+              margin: 0;
+              padding-left: 1rem;
+            "
+            placeholder="Edit text here"
+            oninput="updateSelectedText()"
+          ></textarea>
+        </div>
+        <!-- <button onclick="enableEditing()" style="display: none" id="editText">
+          Edit Text
+        </button> -->
+        <div id="fontCng">
+          <select id="fontFamily" onchange="changeFontFamily()" id="font">
+            <option value="Arial">Arial</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Verdana">Verdana</option>
+          </select>
+          <select id="fontSize" onchange="changeFontSize()">
+            <option value="12">12px</option>
+            <option value="14">14px</option>
+            <option value="16" selected>16px</option>
+            <option value="18">18px</option>
+            <option value="20">20px</option>
+            <option value="24">24px</option>
+          </select>
+          
+        </div>
+        <button onclick="toggleBold()" style="display: none" id="boldButon">
+          Bold
+        </button>
+        <div id="stylee">
+          <!-- <button onclick="increaseFontSize()">Increase Font Size</button> -->
+          <div id="color-picker">
+            <input type="color" id="colorPicker" onchange="changeTextColor()" />
+            <div>Color</div>
+          </div>
+
+          <div id="align">
+            <select id="textAlignment" onchange="changeAlignment()">
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+              <option value="justify">Justify</option>
+            </select>
+            <p>Align</p>
+          </div>
+
+          <div id="lineSet">
+            <input
+              type="number"
+              id="lineHeight"
+              placeholder="Line Height"
+              onchange="changeLineHeight()"
+            />
+            <p>Line Height</p>
+          </div>
+          <!-- <button onclick="toggleItalic()">Italic</button> -->
+          <!-- <button onclick="toggleUnderline()">Underline</button> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div
+          id="canvas"
+          class="swiper-slide"
+          onmousemove="onMouseMove(event)"
+          onmouseup="onMouseUp()"
+        >
+          <div
+            class="draggable"
+            onmousedown="onMouseDown(event)"
+            onclick="selectTextBox(event)"
+          >
+            <div contenteditable="true">Drag Me!</div>
+            <div
+              class="resize-handle hidden"
+              onmousedown="onResizeMouseDown(event)"
+            ></div>
+          </div>
+        </div>
+
+        <div
+          id="canvas"
+          class="swiper-slide"
+          onmousemove="onMouseMove(event)"
+          onmouseup="onMouseUp()"
+        >
+          <div
+            class="draggable"
+            onmousedown="onMouseDown(event)"
+            onclick="selectTextBox(event)"
+          >
+            <div contenteditable="true">Drag Me!</div>
+            <div
+              class="resize-handle hidden"
+              onmousedown="onResizeMouseDown(event)"
+            ></div>
+          </div>
+        </div>
+
+        <div
+          id="canvas"
+          class="swiper-slide"
+          onmousemove="onMouseMove(event)"
+          onmouseup="onMouseUp()"
+        >
+          <div
+            class="draggable"
+            onmousedown="onMouseDown(event)"
+            onclick="selectTextBox(event)"
+          >
+            <div contenteditable="true">Drag Me!</div>
+            <div
+              class="resize-handle hidden"
+              onmousedown="onResizeMouseDown(event)"
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script src="index.js"></script>
+  </body>
+</html>
